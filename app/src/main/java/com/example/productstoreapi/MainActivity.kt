@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.productstoreapi.databinding.ActivityMainBinding
 import com.example.productstoreapi.network.StoreApi
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         //recyclerview
         getList { binding.productRecyclerview.adapter = Adapter(it) }
-        binding.productRecyclerview.layoutManager = LinearLayoutManager(this@MainActivity)
+        binding.productRecyclerview.layoutManager =  GridLayoutManager(this@MainActivity, 2)
 
     }
 
