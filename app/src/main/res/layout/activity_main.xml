@@ -1,15 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_all"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:text="On Trend"
+                android:background="@drawable/button_shape"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textStyle="italic"
+                android:textAllCaps="false">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btn_electronic"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:text="Electronics"
+                android:background="@drawable/button_shape"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textStyle="italic"
+                android:textAllCaps="false">
+
+            </Button>
+            <Button
+                android:id="@+id/btn_jewelery"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:text="Jewelery"
+                android:background="@drawable/button_shape"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textAllCaps="false">
+
+            </Button>
+            <Button
+                android:id="@+id/btn_men"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:text="Men's clothing"
+                android:background="@drawable/button_shape"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textAllCaps="false">
+
+            </Button>
+            <Button
+                android:id="@+id/btn_women"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:text="Women's clothing"
+                android:background="@drawable/button_shape"
+                android:textColor="@color/white"
+                android:padding="10dp"
+                android:textAllCaps="false">
+
+            </Button>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productRecyclerview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
@@ -18,4 +99,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
