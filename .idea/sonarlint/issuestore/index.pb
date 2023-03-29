@@ -34,3 +34,7 @@ y
 Iapp/src/main/java/com/example/productstoreapi/network/response/Product.kt,c/3/c3e28e423a8626e8a1abe1ead7ae99e242cbbd42
 h
 8app/src/main/java/com/example/productstoreapi/Adapter.kt,4/9/494963196fc8d5b40959c0541d56c03456ca6842
+q
+Aapp/src/main/java/com/example/productstoreapi/network/StoreApi.kt,0/c/0c5bfbd7b63ecebac3cebca9d97e4ea24dc97068
+u
+Eapp/src/main/java/com/example/productstoreapi/network/StoreService.kt,c/0/c0322f3caad506deadd51f49f7492158f2c32f74

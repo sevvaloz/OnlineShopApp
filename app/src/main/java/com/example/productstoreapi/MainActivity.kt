@@ -2,11 +2,10 @@ package com.example.productstoreapi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.productstoreapi.R.layout.activity_main
 import com.example.productstoreapi.databinding.ActivityMainBinding
-import com.example.productstoreapi.network.State
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,9 +15,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(activity_main)
 
-        //hide action bar
+        //hide the application action bar
         supportActionBar?.hide()
 
         bind()
@@ -28,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bind(){
-        //binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
@@ -38,16 +36,16 @@ class MainActivity : AppCompatActivity() {
         viewmodel.getProducts()
 
         binding.btnJewelery.setOnClickListener {
-            viewmodel.getJeweleryProducts()
+            viewmodel.getJewelery()
         }
         binding.btnElectronic.setOnClickListener {
-            viewmodel.getElectronicProducts()
+            viewmodel.getElectronic()
         }
        binding.btnMen.setOnClickListener {
-            viewmodel.getMenProducts()
+           viewmodel.getMen()
         }
         binding.btnWomen.setOnClickListener {
-            viewmodel.getWomenProducts()
+            viewmodel.getWomen()
         }
         binding.btnAll.setOnClickListener {
             viewmodel.getProducts()
@@ -61,52 +59,7 @@ class MainActivity : AppCompatActivity() {
             binding.productRecyclerview.adapter = Adapter(productList)
             binding.productRecyclerview.layoutManager =  GridLayoutManager(this@MainActivity, 2)
 
-
-            //states
-            viewmodel.stateData.observe(this) { currentState ->
-                when(currentState) {
-                    State.LOADING -> {
-                        Log.d("TAG", "Loading")
-                    }
-                    State.COMPLETED -> {
-                        Log.d("TAG", "Completed")
-                    }
-                    State.ERROR -> {
-                        Log.d("TAG", "Error")
-                    }
-                    null -> {
-                        Log.d("TAG", "Null")
-                    }
-                }
-            }
         }
-
-   /*     viewmodel.productsData.observe(this){ productList ->
-
-            //recyclerview
-            binding.productRecyclerview.adapter = Adapter(productList)
-            binding.productRecyclerview.layoutManager =  GridLayoutManager(this@MainActivity, 2)
-
-            //states
-            viewmodel.stateData.observe(this) { currentState ->
-                when(currentState) {
-                    State.LOADING -> {
-                        Log.d("TAG", "Loading")
-                    }
-                    State.COMPLETED -> {
-                        Log.d("TAG", "Completed")
-                    }
-                    State.ERROR -> {
-                        Log.d("TAG", "Error")
-                    }
-                    null -> {
-                        Log.d("TAG", "Null")
-                    }
-                }
-            }
-
-        }*/
-
     }
 
 
