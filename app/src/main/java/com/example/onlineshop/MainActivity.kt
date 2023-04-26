@@ -1,18 +1,19 @@
-package com.example.productstoreapi
+package com.example.onlineshop
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.productstoreapi.R.layout.activity_main
-import com.example.productstoreapi.databinding.ActivityMainBinding
+import com.example.onlineshop.R.layout.activity_main
+import com.example.onlineshop.adapter.ProductAdapter
+import com.example.onlineshop.viewmodel.MainViewModel
+import com.example.onlineshop.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewmodel: ViewModel by viewModels()
+    private val viewmodel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         viewmodel.productsData.observe(this){ productList ->
 
             //recyclerview
-            binding.productRecyclerview.adapter = Adapter(productList)
+            binding.productRecyclerview.adapter = ProductAdapter(productList)
             binding.productRecyclerview.layoutManager =  GridLayoutManager(this@MainActivity, 2)
 
         }

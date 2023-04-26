@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.productstoreapi'
+    namespace 'com.example.onlineshop'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.productstoreapi"
+        applicationId "com.example.onlineshop"
         minSdk 24
         targetSdk 33
         versionCode 1

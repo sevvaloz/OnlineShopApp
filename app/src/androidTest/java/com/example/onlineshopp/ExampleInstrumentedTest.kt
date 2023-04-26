@@ -1,4 +1,4 @@
-package com.example.productstoreapi
+package com.example.onlineshopp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

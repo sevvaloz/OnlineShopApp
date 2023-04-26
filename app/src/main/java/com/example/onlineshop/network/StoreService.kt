@@ -1,8 +1,7 @@
-package com.example.productstoreapi.network
+package com.example.onlineshop.network
 
-import com.example.productstoreapi.network.response.Product
+import com.example.onlineshop.model.Product
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 
 interface StoreService {

@@ -1,4 +1,4 @@
-package com.example.productstoreapi
+package com.example.onlineshopp
 
 import org.junit.Test
 

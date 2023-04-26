@@ -1,4 +1,4 @@
-package com.example.productstoreapi.network.response
+package com.example.onlineshop.model
 
 data class Product(
     val category: String,

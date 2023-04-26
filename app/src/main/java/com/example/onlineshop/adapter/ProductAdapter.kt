@@ -1,13 +1,13 @@
-package com.example.productstoreapi
+package com.example.onlineshop.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.productstoreapi.databinding.ItemProductBinding
-import com.example.productstoreapi.network.response.Product
+import com.example.onlineshop.databinding.ItemProductBinding
+import com.example.onlineshop.model.Product
 
-class Adapter(private val productList: List<Product>): RecyclerView.Adapter<Adapter.ProductViewHolder>() {
+class ProductAdapter(private val productList: List<Product>): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(val binding: ItemProductBinding): RecyclerView.ViewHolder(binding.root)
 

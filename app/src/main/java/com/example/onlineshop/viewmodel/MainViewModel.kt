@@ -1,25 +1,21 @@
-package com.example.productstoreapi
+package com.example.onlineshop.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.productstoreapi.network.StoreApi
-import com.example.productstoreapi.network.response.Product
+import com.example.onlineshop.network.StoreApi
+import com.example.onlineshop.model.Product
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ViewModel: ViewModel() {
+class MainViewModel: ViewModel() {
 
     private val products = MutableLiveData<List<Product>>()
     val productsData: LiveData<List<Product>> get() = products
-
-/*    private val jproducts = MutableLiveData<List<Product>>()
-    val jproductsData: LiveData<List<Product>> get() = jproducts*/
-
 
     //all product
     fun getProducts() {

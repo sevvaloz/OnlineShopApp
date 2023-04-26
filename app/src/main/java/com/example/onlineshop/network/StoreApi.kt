@@ -1,4 +1,4 @@
-package com.example.productstoreapi.network
+package com.example.onlineshop.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit
 
 internal object StoreApi {
 
+    private const val BASE_URL = "https://fakestoreapi.com"
     private lateinit var httpClient: OkHttpClient.Builder
 
     //Service
