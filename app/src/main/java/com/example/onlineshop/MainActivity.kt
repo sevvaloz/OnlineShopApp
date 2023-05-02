@@ -1,16 +1,22 @@
 package com.example.onlineshop
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.onlineshop.R.layout.activity_main
 import com.example.onlineshop.adapter.ProductAdapter
-import com.example.onlineshop.viewmodel.MainViewModel
 import com.example.onlineshop.databinding.ActivityMainBinding
+import com.example.onlineshop.viewmodel.MainViewModel
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private lateinit var binding: ActivityMainBinding
     private val viewmodel: MainViewModel by viewModels()
@@ -19,17 +25,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
 
-        //hide the application action bar
-        supportActionBar?.hide()
+        supportActionBar?.title = "Welcome"
 
-        dataBinding()
+        viewBinding()
         sendRequest()
         listeners()
         observeViewModel()
+        activityTransitions()
 
     }
 
-    fun dataBinding(){
+    fun viewBinding(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
@@ -54,6 +60,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnAll.setOnClickListener {
             viewmodel.getProducts()
         }
+        binding.sortButton.setOnClickListener {
+            showAlertDialog()
+        }
     }
 
     private fun observeViewModel(){
@@ -66,6 +75,71 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.search_menu, menu)
+        val search = menu?.findItem(R.id.menu_search)
+        val searchView = search?.actionView as SearchView
+        searchView.isSubmitButtonEnabled = true
+        searchView.setOnQueryTextListener(this@MainActivity)
+
+        return true
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if(query != null){
+
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if(query != null){
+
+        }
+        return true
+    }
+
+    private fun showAlertDialog() {
+        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
+        alertDialog.setTitle("Sort by")
+        val items = arrayOf("Increasing Price", "Decreasing Price")
+        alertDialog.setItems(items) { dialog, which ->
+            when (which) {
+                0 -> Toast.makeText(this@MainActivity, "increased price", Toast.LENGTH_LONG).show()
+                1 -> Toast.makeText(this@MainActivity, "decreasing price", Toast.LENGTH_LONG).show()
+            }
+        }
+        val alert: AlertDialog = alertDialog.create()
+        alert.show()
+    }
+
+    fun activityTransitions(){
+        binding.bottomNavigation.selectedItemId = R.id.bottom_home
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.bottom_home -> return@setOnItemSelectedListener true
+                R.id.bottom_favorite -> {
+                    startActivity(Intent(applicationContext, FavoriteProductsActivity::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.bottom_cart -> {
+                    startActivity(Intent(applicationContext, CartActivity::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.bottom_profile -> {
+                    startActivity(Intent(applicationContext, ProfileActivity::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+                    return@setOnItemSelectedListener true
+                }
+            }
+            false
+        }
+    }
 
 
 }

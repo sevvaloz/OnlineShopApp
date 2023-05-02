@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/parentLinearlayout"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/parentlayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,101 +13,119 @@
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:backgroundTint="@color/transparent">
-
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/categoryLinearlayout"
-            android:layout_height="wrap_content"
+            android:id="@+id/categorylayout"
             android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/transparent"
-            android:backgroundTint="@color/transparent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-            <Button
+            <TextView
                 android:id="@+id/btn_all"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_margin="10dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:padding="8dp"
                 android:text="On Trend"
-                android:background="@drawable/button_shape"
-                android:textColor="@color/white"
-                android:padding="10dp"
-                android:textStyle="italic"
-                android:textAllCaps="false">
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textStyle="bold"></TextView>
 
-            </Button>
-
-            <Button
+            <TextView
                 android:id="@+id/btn_electronic"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_margin="10dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:padding="8dp"
                 android:text="Electronics"
-                android:background="@drawable/button_shape"
-                android:textColor="@color/white"
-                android:padding="10dp"
-                android:textStyle="italic"
-                android:textAllCaps="false">
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textStyle="bold"></TextView>
 
-            </Button>
-            <Button
+            <TextView
                 android:id="@+id/btn_jewelery"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_margin="10dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:padding="8dp"
                 android:text="Jewelery"
-                android:background="@drawable/button_shape"
-                android:textColor="@color/white"
-                android:padding="10dp"
-                android:textStyle="italic"
-                android:textAllCaps="false">
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textStyle="bold"></TextView>
 
-            </Button>
-            <Button
+            <TextView
                 android:id="@+id/btn_men"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_margin="10dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:padding="8dp"
                 android:text="Men's clothing"
-                android:background="@drawable/button_shape"
-                android:textColor="@color/white"
-                android:padding="10dp"
-                android:textStyle="italic"
-                android:textAllCaps="false">
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textStyle="bold"></TextView>
 
-            </Button>
-            <Button
+            <TextView
                 android:id="@+id/btn_women"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_margin="10dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:padding="8dp"
                 android:text="Women's clothing"
-                android:background="@drawable/button_shape"
-                android:textColor="@color/white"
-                android:padding="10dp"
-                android:textStyle="italic"
-                android:textAllCaps="false">
-
-            </Button>
-
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textStyle="bold"></TextView>
         </LinearLayout>
-
     </HorizontalScrollView>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productRecyclerview"
         android:layout_width="match_parent"
-        android:layout_height="660dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:background="@color/transparent"
-        android:backgroundTint="@color/transparent"/>
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/scrollview"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B9ABDA"
+        app:itemIconTint="@drawable/menu_item_selector"
+        app:itemTextColor="@drawable/menu_item_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_menu">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/sortButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/baseline_swap_vert_24"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="@+id/scrollview"
+        android:layout_margin="20sp"
+        app:backgroundTint="#B9ABDA"
+        app:tint="@color/white">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
