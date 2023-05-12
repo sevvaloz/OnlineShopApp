@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.onlineshop.db.ShopDatabase
 import com.example.onlineshop.db.ShopRepository
-import com.example.onlineshop.model.FavoritesItem
 import com.example.onlineshop.network.StoreApi
 import com.example.onlineshop.model.Product
 import com.google.gson.Gson
@@ -24,8 +23,8 @@ class MainViewModel: ViewModel() {
     val productsData: LiveData<List<Product>> get() = products
 
     //REPOSITORY
+    var allFavorites: LiveData<List<Product>>? = null
     var repository: ShopRepository? = null
-    var allFavorites: LiveData<List<FavoritesItem>>? = null
 
     fun init(app: Application){
         val dao = ShopDatabase.getDatabaseInstance(app, Gson()).getDao()
@@ -34,12 +33,12 @@ class MainViewModel: ViewModel() {
     }
 
     //FAVORITES MANAGE
-    fun addToFavorites(favItem: FavoritesItem){
+    fun addToFavorites(favItem: Product){
         viewModelScope.launch {
             repository?.addToFavorites(favItem)
         }
     }
-    fun deleteFromFavorites(favItem: FavoritesItem) {
+    fun deleteFromFavorites(favItem: Product) {
         viewModelScope.launch {
             repository?.deleteFromFavorites(favItem)
         }

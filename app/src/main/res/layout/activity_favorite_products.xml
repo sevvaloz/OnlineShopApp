@@ -8,7 +8,7 @@
     tools:context=".FavoriteProductsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+        android:id="@+id/favoritesRecyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"/>

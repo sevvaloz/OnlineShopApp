@@ -5,11 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.onlineshop.databinding.ItemProductBinding
-import com.example.onlineshop.model.FavoritesItem
 import com.example.onlineshop.model.Product
-import com.example.onlineshop.utils.RowClick
 
-class FavoritesAdapter(private val favoritesList: List<FavoritesItem>,
+class FavoritesAdapter(private val favoritesList: List<Product>,
                        //private val favClickListener: RowClick<FavoritesItem>
 ): RecyclerView.Adapter<FavoritesAdapter.FavoriteProductViewHolder>() {
 

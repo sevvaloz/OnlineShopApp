@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     private fun sendRequest(){
-        println(viewmodel.getProducts())
+        viewmodel.getProducts()
     }
 
     private fun listeners(){
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private val favoritesListener = object : RowClick<Product> {
         override fun onRowClick(pos: Int, item: Product) {
             Log.d("TAG", item.title + " tiklandi")
-            Intent(this@MainActivity, FavoriteProductsActivity::class.java).putExtra("favItem", item)
+            viewmodel.addToFavorites(item)
         }
     }
 

@@ -6,13 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.onlineshop.model.CartItem
-import com.example.onlineshop.model.FavoritesItem
 import com.example.onlineshop.model.Product
-import com.example.onlineshop.model.Rating
 import com.google.gson.Gson
 
 @Database(
-    entities = [FavoritesItem::class, CartItem::class],
+    entities = [Product::class, CartItem::class],
     version = 1,
     exportSchema = false
 )

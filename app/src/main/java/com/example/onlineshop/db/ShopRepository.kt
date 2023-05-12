@@ -1,17 +1,17 @@
 package com.example.onlineshop.db
 
 import androidx.lifecycle.LiveData
-import com.example.onlineshop.model.FavoritesItem
+import com.example.onlineshop.model.Product
 
 class ShopRepository(private val dao: ShopDao) {
 
-    fun addToFavorites(favItem: FavoritesItem){
+    fun addToFavorites(favItem: Product){
         dao.addToFavorites(favItem)
     }
 
-    fun deleteFromFavorites(favItem: FavoritesItem) {
+    fun deleteFromFavorites(favItem: Product) {
         dao.deleteFromFavorites(favItem)
     }
 
-    val allFavorites: LiveData<List<FavoritesItem>> = dao.getAllFavorites()
+    val allFavorites: LiveData<List<Product>> = dao.getAllFavorites()
 }

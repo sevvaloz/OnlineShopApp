@@ -3,13 +3,11 @@ package com.example.onlineshop
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.onlineshop.adapter.FavoritesAdapter
 import com.example.onlineshop.databinding.ActivityFavoriteProductsBinding
-import com.example.onlineshop.model.FavoritesItem
-import com.example.onlineshop.model.Product
-import com.example.onlineshop.utils.RowClick
 import com.example.onlineshop.viewmodel.MainViewModel
 
 class FavoriteProductsActivity : AppCompatActivity() {
@@ -37,11 +35,13 @@ class FavoriteProductsActivity : AppCompatActivity() {
     }
 
     private fun observeViewmodel(){
-        viewmodel.allFavorites?.observe(this){ favoriteList ->
+        viewmodel.allFavorites?.observe(this){ favList ->
             //fav recyclerview
-            binding.rv.adapter = FavoritesAdapter(favoriteList)
-            binding.rv.layoutManager =  GridLayoutManager(this@FavoriteProductsActivity, 2)
+            binding.favoritesRecyclerview.adapter = FavoritesAdapter(favList)
+            binding.favoritesRecyclerview.layoutManager =  GridLayoutManager(this@FavoriteProductsActivity, 2)
         }
+
+        Log.d("AGA", viewmodel.allFavorites.toString())
     }
 
     private fun activityTransitions(){
