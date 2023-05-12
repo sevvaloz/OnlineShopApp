@@ -5,9 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.onlineshop.databinding.ItemProductBinding
+import com.example.onlineshop.model.FavoritesItem
 import com.example.onlineshop.model.Product
+import com.example.onlineshop.utils.RowClick
 
-class ProductAdapter(private val productList: List<Product>): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+
+class ProductAdapter(private val productList: List<Product>,
+                     private val favClickListener: RowClick<Product>
+): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(val binding: ItemProductBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -23,6 +28,10 @@ class ProductAdapter(private val productList: List<Product>): RecyclerView.Adapt
             title.text = product.title
             price.text = product.price.toString()
             Glide.with(holder.binding.root).load(product.image).into(img)
+
+            favButton.setOnClickListener {
+                favClickListener.onRowClick(position, product)
+            }
         }
     }
 

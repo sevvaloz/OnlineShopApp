@@ -1,11 +1,10 @@
 package com.example.onlineshop
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -13,13 +12,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.onlineshop.R.layout.activity_main
 import com.example.onlineshop.adapter.ProductAdapter
 import com.example.onlineshop.databinding.ActivityMainBinding
+import com.example.onlineshop.model.Product
+import com.example.onlineshop.utils.RowClick
 import com.example.onlineshop.viewmodel.MainViewModel
 
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
-    private lateinit var binding: ActivityMainBinding
     private val viewmodel: MainViewModel by viewModels()
+    private lateinit var binding: ActivityMainBinding
+    private var inCartsList: ArrayList<Product> = arrayListOf()
+    private var favoriteProductList: ArrayList<Product> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +35,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         listeners()
         observeViewModel()
         activityTransitions()
-
     }
 
     fun viewBinding(){
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     private fun sendRequest(){
-        viewmodel.getProducts()
+        println(viewmodel.getProducts())
     }
 
     private fun listeners(){
@@ -65,13 +67,18 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         }
     }
 
+    private val favoritesListener = object : RowClick<Product> {
+        override fun onRowClick(pos: Int, item: Product) {
+            Log.d("TAG", item.title + " tiklandi")
+            Intent(this@MainActivity, FavoriteProductsActivity::class.java).putExtra("favItem", item)
+        }
+    }
+
     private fun observeViewModel(){
         viewmodel.productsData.observe(this){ productList ->
-
-            //recyclerview
-            binding.productRecyclerview.adapter = ProductAdapter(productList)
+            //main recyclerview
+            binding.productRecyclerview.adapter = ProductAdapter(productList, favoritesListener)
             binding.productRecyclerview.layoutManager =  GridLayoutManager(this@MainActivity, 2)
-
         }
     }
 
@@ -87,16 +94,26 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         if(query != null){
-
+            searchProduct(query)
         }
         return true
     }
 
     override fun onQueryTextChange(query: String?): Boolean {
         if(query != null){
-
+            searchProduct(query)
         }
         return true
+    }
+
+    private fun searchProduct(query: String){
+        viewmodel.productsData.observe(this){ productList ->
+            for (product in productList){
+                if(product.title.contains(query)){
+
+                }
+            }
+        }
     }
 
     private fun showAlertDialog() {
@@ -105,8 +122,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         val items = arrayOf("Increasing Price", "Decreasing Price")
         alertDialog.setItems(items) { dialog, which ->
             when (which) {
-                0 -> Toast.makeText(this@MainActivity, "increased price", Toast.LENGTH_LONG).show()
-                1 -> Toast.makeText(this@MainActivity, "decreasing price", Toast.LENGTH_LONG).show()
+                0 -> viewmodel.getProducts()
+                1 -> viewmodel.getProducts()
             }
         }
         val alert: AlertDialog = alertDialog.create()
